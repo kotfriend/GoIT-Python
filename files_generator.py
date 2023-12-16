@@ -25,7 +25,7 @@ def generate_archive_files(path):
 
 
 def generate_image(path):
-    images = ('JPEG', 'PNG', 'JPG', 'BMP', 'SVG')
+    images = ('JPEG', 'PNG', 'JPG', 'BMP')
     image_array = numpy.random.rand(100, 100, 3) * 255
     image = Image.fromarray(image_array.astype('uint8'))
     image.save(f"{path}/{get_random_filename()}.{choice(images).lower()}")
