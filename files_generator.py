@@ -14,7 +14,7 @@ def get_random_filename():
 
 
 def generate_text_files(path):
-    documents = ('DOC', 'DOCX', 'TXT', 'PDF', 'XLSX', 'PPTX', 'MKV', 'MOV', 'AVI', 'MP3', 'OGG')
+    documents = ('DOC', 'DOCX', 'TXT', 'PDF', 'XLSX', 'PPTX', 'MKV', 'MOV', 'AVI', 'MP3', 'OGG', 'OG', 'XXR', 'QWE')
     with open(path / f"{get_random_filename()}.{choice(documents).lower()}", "wb") as f:
         f.write(MESSAGE.encode())
 

@@ -13,7 +13,7 @@ def handle_archive(path, root_folder, dist):
     target_folder = root_folder / dist
     target_folder.mkdir(exist_ok=True)
 
-    new_name = normalize.normalize(path.name.replace(".zip", '').replace('.gz', '').replace('.tar', ''))
+    new_name = normalize.normalize(path.name.replace(".zip", '').replace('.zg', '').replace('.tar', ''))
     archive_name = new_name.replace('.', '')
 
     archive_folder = target_folder / archive_name
@@ -40,7 +40,6 @@ def remove_empty_folders(path):
                 pass
 
 def main(folder_path):
-    print(folder_path)
     scan.scan(folder_path)
 
     for file in scan.images_files:
@@ -57,9 +56,9 @@ def main(folder_path):
 
     for file in scan.others:
         handle_file(file, folder_path, "OTHER")
-
+    
     for file in scan.archives:
-        handle_file(file, folder_path, "ARCHIVES")
+        handle_archive(file, folder_path, "ARCHIVES")
 
     remove_empty_folders(folder_path)
 
