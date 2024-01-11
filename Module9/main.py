@@ -1,5 +1,6 @@
 dict_contacts = dict()
 
+# Decorator with Errors
 def input_error(func):
     def inner(*args, **kwargs):
         try:
@@ -7,12 +8,18 @@ def input_error(func):
             return result
         except KeyError:
             return 'Wrong name'
+        except TypeError:
+            return 'Command work only with parameters'
         except IndexError:
             return 'Wrong amount values'
         except ValueError:
             return "Give me Name and Phone Number, please"
     return inner
+# ===================================
 
+
+
+# Functions with commands and reaction for error and empty informatioon
 @input_error
 def get_hello() -> str:
     return "How can I help you?"
@@ -24,14 +31,14 @@ def get_add(data: list) -> None:
     if not (data[1]).isnumeric():
         raise ValueError
     dict_contacts.update({data[0]: data[1]})
-    print("Done!")
+    print(f'Added new Contact "{data[0]}"')
 
 @input_error
 def get_change(data: list) -> None:
     if not (data[1]).isnumeric():
         raise ValueError
     dict_contacts[data[0]] = data[1]
-    print('Number was changed!')
+    print(f'Number for "{data[0]}" was changed!')
 
 @input_error
 def get_phone(data: list) -> str:
@@ -49,8 +56,12 @@ def get_end_program():
 
 def get_wrong_command():
     return 'Wrong command.. Try again, please!'
+# =====================================
 
 
+
+
+# Commands from HomeWork for operation and function for work with commands
 COMMANDS = {
     'hello': get_hello,
     'add': get_add,
@@ -67,6 +78,9 @@ def get_handler(processed_comand):
     if processed_comand not in COMMANDS:
         return COMMANDS['wrong command']
     return COMMANDS[processed_comand]
+# =========================================
+
+
 
 
 # Parser for all commands that you wrote
@@ -86,6 +100,9 @@ def comand_parser(comand):
     return result['comand'], result['data']
 # ================================================
 
+
+
+
 def main():
     while True:
         comand = input('Waiting comand: ')
@@ -102,6 +119,8 @@ def main():
             print(result)
             if result == 'Good bye! Thank you for your time!':
                 break
+
+
 
 
 if __name__ == '__main__':
