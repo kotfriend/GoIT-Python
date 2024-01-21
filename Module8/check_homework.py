@@ -9,7 +9,7 @@ import unittest
 from datetime import datetime, timedelta
 from unittest.mock import patch
 
-from main import get_birthdays_per_week
+from Module10.main import get_birthdays_per_week
 
 RED = "\033[91m"
 GREEN = "\033[92m"
